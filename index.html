@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gülsen Namıduru</title>
+    <link rel="stylesheet" href="index/index.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gülsen Namıduru</h1>
+            <div id="cv-link" class="cv-link">C.V.</div>
+        </header>
+
+        <main>
+            <div class="index-column">
+                <ul id="portfolio-index" class="portfolio-index">
+                    <!-- Will be populated by JavaScript -->
+                </ul>
+            </div>
+        </main>
+
+        <!-- Pop-up Modal -->
+        <div id="popup-modal" class="modal">
+            <div class="modal-content">
+                <div class="popup-header">
+                    <h2 id="popup-title"></h2>
+                    <div class="popup-actions">
+                        <a href="#" id="more-link" class="action-link">(More...)</a>
+                        <a href="#" id="close-popup" class="action-link">(Close)</a>
+                    </div>
+                </div>
+                
+                <div class="image-slideshow">
+                    <div id="slideshow-container" class="slideshow-container">
+                        <!-- Images will be inserted here -->
+                    </div>
+                    <div class="slideshow-controls">
+                        <button id="prev-slide" class="slide-btn">‹</button>
+                        <span id="slide-counter" class="slide-counter"></span>
+                        <button id="next-slide" class="slide-btn">›</button>
+                    </div>
+                </div>
+
+                <div class="popup-description">
+                    <p id="popup-short-description"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Detail View -->
+        <div id="detail-view" class="modal detail-modal">
+            <div class="modal-content detail-content">
+                <div class="detail-header">
+                    <h2 id="detail-title"></h2>
+                    <a href="#" id="close-detail" class="action-link">(Close)</a>
+                </div>
+
+                <div class="detail-images" id="detail-images">
+                    <!-- Images and description will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- CV View -->
+        <div id="cv-view" class="modal detail-modal">
+            <div class="modal-content detail-content">
+                <div class="detail-header">
+                    <h2>C.V.</h2>
+                    <a href="#" id="close-cv" class="action-link">(Close)</a>
+                </div>
+
+                <div class="cv-content" id="cv-content">
+                    <!-- CV content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index/index.js"></script>
+</body>
+</html>
+
