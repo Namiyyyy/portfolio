@@ -52,6 +52,7 @@ const portfolioData = {
 // State management
 let currentProject = null;
 let currentSlideIndex = 0;
+let slideshowTimer = null;
 
 // DOM elements
 const portfolioIndex = document.getElementById('portfolio-index');
@@ -94,19 +95,46 @@ function openPopup(project) {
 
     // Handle images
     if (project.images && project.images.length > 0) {
+        // Clear any existing timer
+        if (slideshowTimer) {
+            clearInterval(slideshowTimer);
+            slideshowTimer = null;
+        }
+        
         slideshowContainer.innerHTML = '';
         project.images.forEach((imgPath, index) => {
             const img = document.createElement('img');
             img.src = imgPath;
             img.alt = project.title;
-            if (index !== 0) {
+            img.classList.add('slide-image');
+            if (index === 0) {
+                // First image is visible and sets container height
+                img.style.position = 'relative';
+            } else {
                 img.classList.add('hidden');
             }
+            // Add click handler to change image
+            img.addEventListener('click', () => {
+                if (index !== currentSlideIndex) {
+                    showSlide(index);
+                } else {
+                    // If clicking current image, go to next
+                    nextSlide();
+                }
+            });
             slideshowContainer.appendChild(img);
         });
+        currentSlideIndex = 0;
         updateSlideCounter();
         updateSlideButtons();
         document.querySelector('.image-slideshow').style.display = 'block';
+        
+        // Start auto-advance timer (2 seconds)
+        if (project.images.length > 1) {
+            slideshowTimer = setInterval(() => {
+                nextSlide();
+            }, 2000);
+        }
     } else {
         slideshowContainer.innerHTML = '<p style="font-size: 14px; color: #666;">No images available</p>';
         document.querySelector('.image-slideshow').style.display = 'none';
@@ -126,6 +154,11 @@ function openPopup(project) {
 
 // Close popup modal
 function closePopup() {
+    // Clear slideshow timer
+    if (slideshowTimer) {
+        clearInterval(slideshowTimer);
+        slideshowTimer = null;
+    }
     popupModal.classList.remove('active');
     // Also close detail view if it's open
     if (detailView.classList.contains('active')) {
@@ -198,37 +231,56 @@ function updateSlideButtons() {
         nextSlideBtn.disabled = true;
         return;
     }
-    prevSlideBtn.disabled = currentSlideIndex === 0;
-    nextSlideBtn.disabled = currentSlideIndex === currentProject.images.length - 1;
+    // Buttons are always enabled since slideshow loops
+    prevSlideBtn.disabled = false;
+    nextSlideBtn.disabled = false;
 }
 
 function showSlide(index) {
+    if (!currentProject || !currentProject.images || currentProject.images.length === 0) return;
+    
     const slides = slideshowContainer.querySelectorAll('img');
+    if (index < 0 || index >= slides.length) return;
+    
+    // Reset timer when manually changing slides
+    if (slideshowTimer) {
+        clearInterval(slideshowTimer);
+    }
+    
     slides.forEach((slide, i) => {
         if (i === index) {
             slide.classList.remove('hidden');
+            slide.style.position = 'relative';
+            slide.style.zIndex = '2';
         } else {
             slide.classList.add('hidden');
+            slide.style.position = 'absolute';
+            slide.style.zIndex = '1';
         }
     });
+    
+    currentSlideIndex = index;
     updateSlideCounter();
     updateSlideButtons();
+    
+    // Restart timer
+    if (currentProject.images.length > 1) {
+        slideshowTimer = setInterval(() => {
+            nextSlide();
+        }, 2000);
+    }
 }
 
 function nextSlide() {
     if (!currentProject || !currentProject.images || currentProject.images.length === 0) return;
-    if (currentSlideIndex < currentProject.images.length - 1) {
-        currentSlideIndex++;
-        showSlide(currentSlideIndex);
-    }
+    const nextIndex = (currentSlideIndex + 1) % currentProject.images.length;
+    showSlide(nextIndex);
 }
 
 function prevSlide() {
     if (!currentProject || !currentProject.images || currentProject.images.length === 0) return;
-    if (currentSlideIndex > 0) {
-        currentSlideIndex--;
-        showSlide(currentSlideIndex);
-    }
+    const prevIndex = (currentSlideIndex - 1 + currentProject.images.length) % currentProject.images.length;
+    showSlide(prevIndex);
 }
 
 // Event listeners

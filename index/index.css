@@ -69,7 +69,7 @@ main {
 }
 
 .portfolio-index li {
-    font-size: clamp(32px, 8vw, 400px);
+    font-size: clamp(32px, 8vw, 120px);
     margin-bottom: 0;
     padding: 2px 0 2px 20px;
     cursor: pointer;
@@ -174,16 +174,35 @@ main {
     position: relative;
     width: 100%;
     margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .slideshow-container img {
     width: 100%;
     height: auto;
     display: block;
+    cursor: ew-resize;
+    transition: opacity 0.25s ease-in-out;
 }
 
-.slideshow-container img.hidden {
-    display: none;
+.slideshow-container img.slide-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+    z-index: 1;
+}
+
+.slideshow-container img.slide-image.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.slideshow-container img.slide-image:first-child {
+    position: relative;
+    z-index: 2;
 }
 
 .slideshow-controls {
