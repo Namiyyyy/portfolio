@@ -77,6 +77,10 @@ const cvLink = document.getElementById('cv-link');
 const cvView = document.getElementById('cv-view');
 const cvContent = document.getElementById('cv-content');
 const closeCvBtn = document.getElementById('close-cv');
+const contactLink = document.getElementById('contact-link');
+const contactView = document.getElementById('contact-view');
+const contactContent = document.getElementById('contact-content');
+const closeContactBtn = document.getElementById('close-contact');
 
 // Initialize portfolio index
 function initializeIndex() {
@@ -321,6 +325,10 @@ document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeCvView();
         }
+    } else if (contactView.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            closeContactView();
+        }
     }
 });
 
@@ -391,6 +399,42 @@ cvView.addEventListener('click', (e) => {
     }
 });
 
+// Open Contact view
+function openContactView() {
+    contactContent.innerHTML = `
+        <p><strong>Instagram:</strong><br>
+        <a href="https://www.instagram.com/gnamiduru/?hl=en" target="_blank" style="color: black; text-decoration: underline;">@gnamiduru</a></p>
+        
+        <p><strong>Email:</strong><br>
+        <a href="mailto:namidurugg@gmail.com" style="color: black; text-decoration: underline;">namidurugg@gmail.com</a></p>
+    `;
+    contactView.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Contact view
+function closeContactView() {
+    contactView.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event listeners for Contact
+contactLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    openContactView();
+});
+
+closeContactBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeContactView();
+});
+
+// Close Contact when clicking outside
+contactView.addEventListener('click', (e) => {
+    if (e.target === contactView) {
+        closeContactView();
+    }
+});
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
