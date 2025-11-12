@@ -360,24 +360,6 @@ function openCvView() {
         <p>As an architect, I find my inspiration in urban life, mostly at tresholds where the tension between realities the objects impose accentuates. While forming a direct connection between our affective landscape and urban form, I belive what we see is a way to undersrand ourselves, and the society. My artistic practice thus transforms walking into an essential act of world-making.</p>
         
         <p>The photographic subjects I choose oscillate between hyper- and trans-local in their character. They are mostly bi-products of mass production, in constant circulation, migrating from one place to another, they are nearly context-less. To enhance this effect, I isolate the objects from their surroundings with a process of zooming and framing. Since scale is a relational property of an object, isolation helps me to manipulate the reality that object impose on the viewer. While opening a door to abstraction, it helps me to rewrite the narrative of these objects for a reserach on their affective qualities.</p>
-        
-        <h3>Education</h3>
-        <p><strong>BA, Architecture</strong><br>
-        Middle East Technical University (ODTÜ), Ankara, TR</p>
-        
-        <p><strong>MA, Social Sciences</strong><br>
-        Humboldt University, Berlin. DE</p>
-        
-        <h3>Grants/Residencies</h3>
-        <p>AIR Leopoldplatz Artist Residency, Berlin</p>
-        <p>DAAD Scholarship, Berlin</p>
-        
-        <h3>Exhibition</h3>
-        <p>Urban Silence, at 48H Neukölln, Berlin</p>
-        <p>Paper BAAM, at POP Kudamm, Berlin</p>
-        <p>BAAM 6, Not A Gallery, Berlin</p>
-        <p>We Must Pool Our Memos, at ORTSTERMIN Art Festival, Berlin</p>
-        <p>Hieroglyphs, at Parus Art Space, Ankara</p>
     `;
     cvView.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -447,7 +429,26 @@ contactView.addEventListener('click', (e) => {
 // Open CV Page view
 function openCvPageView() {
     cvPageContent.innerHTML = `
-        <p>CV content coming soon...</p>
+        <h3><strong>Education</strong></h3>
+        <p><strong>BA, Architecture</strong><br>
+        Middle East Technical University (ODTÜ), Ankara, TR</p>
+        
+        <p><strong>MA, Social Sciences</strong><br>
+        Humboldt University, Berlin. DE</p>
+        
+        <h3><strong>Grants/Residencies</strong></h3>
+        <p>AIR Leopoldplatz Artist Residency, Berlin</p>
+        <p>DAAD Scholarship, Berlin</p>
+        
+        <h3><strong>Exhibition</strong></h3>
+        <p>Urban Silence, at 48H Neukölln, Berlin</p>
+        <p>Paper BAAM, at POP Kudamm, Berlin</p>
+        <p>BAAM 6, Not A Gallery, Berlin</p>
+        <p>We Must Pool Our Memos, at ORTSTERMIN Art Festival, Berlin</p>
+        <p>Hieroglyphs, at Parus Art Space, Ankara</p>
+        
+        <h3><strong>Mentions</strong></h3>
+        <p><a href="https://figuresphotography.com/stories/abandoned-battleground-abandoned-battleground-gulsen-namiduru/" target="_blank" style="color: black; text-decoration: underline;">Abandoned Battleground by Gülsen Namıduru</a>, at Figures Photography</p>
     `;
     cvPageView.classList.add('active');
     document.body.style.overflow = 'hidden';
