@@ -4,7 +4,7 @@ const portfolioData = {
     projects: [
         {
             id: 1,
-            title: "2024 - Architectures Of Sky",
+            title: "Item 01 - Architectures Of Sky",
             year: "2024",
             category: "photography",
             shortDescription: "a photography series aiming to create an index for objects furnishing sky",
@@ -18,7 +18,7 @@ const portfolioData = {
         },
         {
             id: 2,
-            title: "Work 02 - Abandoned Battle Ground",
+            title: "Item 02 - Abandoned Battle Ground",
             year: "2023",
             category: "photography",
             shortDescription: "a photographical research on rubbish, and urban exclusion",
@@ -31,16 +31,19 @@ const portfolioData = {
         },
         {
             id: 3,
-            title: "Work 03 - hieroglyphs",
+            title: "Item 03 - hieroglyphs",
             year: "2022",
             category: "drawing",
             shortDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
             fullDescription: "Content coming soon...",
-            images: []
+            images: [
+                "img/hiyeroglifler/daire çalışma.jpg",
+                "img/hiyeroglifler/üçgen çalışması.jpg"
+            ]
         },
         {
             id: 4,
-            title: "Work 04 -Bodrum Merz-Bau",
+            title: "Item 04 -Bodrum Merz-Bau",
             year: "2020",
             category: "INSTALLATION",
             shortDescription: "a proposal on transforming architectural objects of capitalist dystopia",
@@ -337,8 +340,29 @@ detailView.addEventListener('click', (e) => {
 
 // Open CV view
 function openCvView() {
-    // CV content placeholder - you can replace this with actual CV content
-    cvContent.innerHTML = '<p>CV content coming soon...</p>';
+    cvContent.innerHTML = `
+        <p>As an architect, I find my inspiration in urban life, mostly at tresholds where the tension between realities the objects impose accentuates. While forming a direct connection between our affective landscape and urban form, I belive what we see is a way to undersrand ourselves, and the society. My artistic practice thus transforms walking into an essential act of world-making.</p>
+        
+        <p>The photographic subjects I choose oscillate between hyper- and trans-local in their character. They are mostly bi-products of mass production, in constant circulation, migrating from one place to another, they are nearly context-less. To enhance this effect, I isolate the objects from their surroundings with a process of zooming and framing. Since scale is a relational property of an object, isolation helps me to manipulate the reality that object impose on the viewer. While opening a door to abstraction, it helps me to rewrite the narrative of these objects for a reserach on their affective qualities.</p>
+        
+        <h3>Education</h3>
+        <p><strong>BA, Architecture</strong><br>
+        Middle East Technical University (ODTÜ), Ankara, TR</p>
+        
+        <p><strong>MA, Social Sciences</strong><br>
+        Humboldt University, Berlin. DE</p>
+        
+        <h3>Grants/Residencies</h3>
+        <p>AIR Leopoldplatz Artist Residency, Berlin</p>
+        <p>DAAD Scholarship, Berlin</p>
+        
+        <h3>Exhibition</h3>
+        <p>Urban Silence, at 48H Neukölln, Berlin</p>
+        <p>Paper BAAM, at POP Kudamm, Berlin</p>
+        <p>BAAM 6, Not A Gallery, Berlin</p>
+        <p>We Must Pool Our Memos, at ORTSTERMIN Art Festival, Berlin</p>
+        <p>Hieroglyphs, at Parus Art Space, Ankara</p>
+    `;
     cvView.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
