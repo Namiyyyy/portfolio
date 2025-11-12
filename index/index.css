@@ -5,15 +5,16 @@
 }
 
 @font-face {
-    font-family: 'Heading Now';
-    src: url('../fonts/HeadingNow-Regular.woff2') format('woff2'),
-         url('../fonts/HeadingNow-Regular.woff') format('woff');
+    font-family: 'Leelawadee';
+    src: url('../fonts/Leelawadee.woff2') format('woff2'),
+         url('../fonts/Leelawadee.woff') format('woff'),
+         url('../fonts/Leelawadee.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    font-family: 'Heading Now', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-family: 'Leelawadee', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     background: white;
     color: black;
     line-height: 1.6;
@@ -27,6 +28,8 @@ body {
 header {
     padding: 0;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header h1 {
@@ -38,15 +41,28 @@ header h1 {
     word-wrap: break-word;
     overflow-wrap: break-word;
     color: red;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header h1 span {
+    flex-shrink: 0;
 }
 
 .cv-link {
     font-size: clamp(14px, 3.5vw, 53px);
     font-weight: normal;
-    padding: 0 2px 4px 20px;
+    padding: 0 20px 4px 20px;
+    margin-bottom: 40px;
     word-wrap: break-word;
     overflow-wrap: break-word;
     color: red;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .cv-link span {
@@ -56,6 +72,19 @@ header h1 {
 
 .cv-link span:hover {
     opacity: 0.6;
+}
+
+.cv-link .separator {
+    cursor: default;
+    flex-shrink: 0;
+}
+
+.cv-link .separator:hover {
+    opacity: 1;
+}
+
+.cv-link span:not(.separator) {
+    flex-shrink: 0;
 }
 
 main {
@@ -151,13 +180,14 @@ main {
     font-weight: normal;
     flex: 1;
     min-width: 200px;
-    color: red;
+    color: black;
 }
 
 .popup-actions {
     display: flex;
     gap: 15px;
     flex-shrink: 0;
+    margin-left: auto;
 }
 
 .action-link {
@@ -340,7 +370,8 @@ main {
 
     .cv-link {
         font-size: clamp(13px, 2.7vw, 32px);
-        padding: 0 20px 30px 20px;
+        padding: 0 20px 4px 20px;
+        margin-bottom: 30px;
     }
 
     main {

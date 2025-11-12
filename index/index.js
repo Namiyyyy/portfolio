@@ -81,6 +81,10 @@ const contactLink = document.getElementById('contact-link');
 const contactView = document.getElementById('contact-view');
 const contactContent = document.getElementById('contact-content');
 const closeContactBtn = document.getElementById('close-contact');
+const cvPageLink = document.getElementById('cv-page-link');
+const cvPageView = document.getElementById('cv-page-view');
+const cvPageContent = document.getElementById('cv-page-content');
+const closeCvPageBtn = document.getElementById('close-cv-page');
 
 // Initialize portfolio index
 function initializeIndex() {
@@ -329,6 +333,10 @@ document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeContactView();
         }
+    } else if (cvPageView.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            closeCvPageView();
+        }
     }
 });
 
@@ -433,6 +441,39 @@ closeContactBtn.addEventListener('click', (e) => {
 contactView.addEventListener('click', (e) => {
     if (e.target === contactView) {
         closeContactView();
+    }
+});
+
+// Open CV Page view
+function openCvPageView() {
+    cvPageContent.innerHTML = `
+        <p>CV content coming soon...</p>
+    `;
+    cvPageView.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close CV Page view
+function closeCvPageView() {
+    cvPageView.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event listeners for CV Page
+cvPageLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    openCvPageView();
+});
+
+closeCvPageBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeCvPageView();
+});
+
+// Close CV Page when clicking outside
+cvPageView.addEventListener('click', (e) => {
+    if (e.target === cvPageView) {
+        closeCvPageView();
     }
 });
 
