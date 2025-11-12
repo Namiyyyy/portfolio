@@ -41,17 +41,20 @@ header h1 {
 }
 
 .cv-link {
-    font-size: clamp(21px, 5.3vw, 80px);
+    font-size: clamp(14px, 3.5vw, 53px);
     font-weight: normal;
     padding: 0 2px 4px 20px;
-    cursor: pointer;
-    transition: opacity 0.2s;
     word-wrap: break-word;
     overflow-wrap: break-word;
     color: red;
 }
 
-.cv-link:hover {
+.cv-link span {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.cv-link span:hover {
     opacity: 0.6;
 }
 
@@ -336,7 +339,7 @@ main {
     }
 
     .cv-link {
-        font-size: clamp(19px, 4vw, 48px);
+        font-size: clamp(13px, 2.7vw, 32px);
         padding: 0 20px 30px 20px;
     }
 
