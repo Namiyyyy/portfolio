@@ -4,7 +4,7 @@ const portfolioData = {
     projects: [
         {
             id: 1,
-            title: "Item 01 - Architectures Of Sky",
+            title: "01 - Architectures Of Sky",
             year: "2024",
             category: "photography",
             shortDescription: "a photography series aiming to create an index for objects furnishing sky",
@@ -18,7 +18,7 @@ const portfolioData = {
         },
         {
             id: 2,
-            title: "Item 02 - Abandoned Battle Ground",
+            title: "02 - Abandoned Battle Ground",
             year: "2023",
             category: "photography",
             shortDescription: "a photographical research on rubbish, and urban exclusion",
@@ -31,11 +31,11 @@ const portfolioData = {
         },
         {
             id: 3,
-            title: "Item 03 - hieroglyphs",
+            title: "03 - hieroglyphs",
             year: "2022",
             category: "drawing",
             shortDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
-            fullDescription: "Content coming soon...",
+            fullDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
             images: [
                 "img/hiyeroglifler/daire çalışma.jpg",
                 "img/hiyeroglifler/üçgen çalışması.jpg"
@@ -43,7 +43,7 @@ const portfolioData = {
         },
         {
             id: 4,
-            title: "Item 04 -Bodrum Merz-Bau",
+            title: "04 -Bodrum Merz-Bau",
             year: "2020",
             category: "INSTALLATION",
             shortDescription: "a proposal on transforming architectural objects of capitalist dystopia",

@@ -37,6 +37,7 @@ header h1 {
     cursor: default;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    color: red;
 }
 
 .cv-link {
@@ -47,6 +48,7 @@ header h1 {
     transition: opacity 0.2s;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    color: red;
 }
 
 .cv-link:hover {
@@ -146,6 +148,7 @@ main {
     font-weight: normal;
     flex: 1;
     min-width: 200px;
+    color: red;
 }
 
 .popup-actions {
@@ -280,6 +283,7 @@ main {
     font-weight: normal;
     flex: 1;
     min-width: 200px;
+    color: red;
 }
 
 .detail-images {
