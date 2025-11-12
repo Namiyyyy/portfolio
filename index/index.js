@@ -4,7 +4,7 @@ const portfolioData = {
     projects: [
         {
             id: 1,
-            title: "Work 01 - Architectures Of Sky",
+            title: "2024 - Architectures Of Sky",
             year: "2024",
             category: "photography",
             shortDescription: "a photography series aiming to create an index for objects furnishing sky",
@@ -12,7 +12,8 @@ const portfolioData = {
             images: [
                 "img/architecture_of_sky/architecture_of_sky.jpg",
                 "img/architecture_of_sky/architectures_of_sky_2.jpg",
-                "img/architecture_of_sky/architectures_of_sky_3.jpg"
+                "img/architecture_of_sky/architectures_of_sky_3.jpg",
+                "img/architecture_of_sky/_DSC5409.jpg"
             ]
         },
         {

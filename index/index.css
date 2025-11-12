@@ -30,7 +30,7 @@ header {
 }
 
 header h1 {
-    font-size: clamp(32px, 8vw, 120px);
+    font-size: clamp(21px, 5.3vw, 80px);
     font-weight: normal;
     letter-spacing: 0.5px;
     padding: 20px 20px 0px 20px;
@@ -40,7 +40,7 @@ header h1 {
 }
 
 .cv-link {
-    font-size: clamp(32px, 8vw, 120px);
+    font-size: clamp(21px, 5.3vw, 80px);
     font-weight: normal;
     padding: 0 2px 4px 20px;
     cursor: pointer;
@@ -69,7 +69,7 @@ main {
 }
 
 .portfolio-index li {
-    font-size: clamp(32px, 8vw, 120px);
+    font-size: clamp(21px, 5.3vw, 80px);
     margin-bottom: 0;
     padding: 2px 0 2px 20px;
     cursor: pointer;
@@ -316,12 +316,12 @@ main {
 /* Responsive */
 @media (max-width: 768px) {
     header h1 {
-        font-size: clamp(28px, 6vw, 72px);
+        font-size: clamp(19px, 4vw, 48px);
         padding: 30px 20px 15px 20px;
     }
 
     .cv-link {
-        font-size: clamp(28px, 6vw, 72px);
+        font-size: clamp(19px, 4vw, 48px);
         padding: 0 20px 30px 20px;
     }
 
@@ -336,7 +336,7 @@ main {
     }
 
     .portfolio-index li {
-        font-size: clamp(28px, 8vw, 72px);
+        font-size: clamp(19px, 5.3vw, 48px);
         padding: 15px 20px;
     }
 
