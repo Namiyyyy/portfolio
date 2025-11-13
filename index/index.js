@@ -161,6 +161,13 @@ function openPopup(project) {
 
     // Show popup
     popupModal.classList.add('active');
+    // Add class for work items starting with "01-", "02-", "03-", or "04-" to use larger modal size
+    if (project.title.startsWith('01') || project.title.startsWith('02') || 
+        project.title.startsWith('03') || project.title.startsWith('04')) {
+        popupModal.classList.add('large-modal');
+    } else {
+        popupModal.classList.remove('large-modal');
+    }
     document.body.style.overflow = 'hidden';
 }
 
@@ -181,45 +188,12 @@ function closePopup() {
     currentSlideIndex = 0;
 }
 
-// Open detail view
+// Open detail view as separate page
 function openDetailView() {
     if (!currentProject) return;
-
-    detailTitle.textContent = `${currentProject.title} (${currentProject.year})`;
     
-    // Add images to detail view with description after first image
-    detailImages.innerHTML = '';
-    if (currentProject.images && currentProject.images.length > 0) {
-        currentProject.images.forEach((imgPath, index) => {
-            const img = document.createElement('img');
-            img.src = imgPath;
-            img.alt = currentProject.title;
-            detailImages.appendChild(img);
-            
-            // Insert description after first image
-            if (index === 0) {
-                const descDiv = document.createElement('div');
-                descDiv.className = 'detail-description';
-                // Split by double newlines for paragraphs, preserve single newlines as spaces
-                const paragraphs = currentProject.fullDescription.split(/\n\n+/);
-                descDiv.innerHTML = paragraphs.map(p => '<p>' + p.trim().replace(/\n/g, ' ') + '</p>').join('');
-                detailImages.appendChild(descDiv);
-            }
-        });
-    } else {
-        detailImages.innerHTML = '<p style="font-size: 14px; color: #666;">No images available</p>';
-        // Still show description if no images
-        const descDiv = document.createElement('div');
-        descDiv.className = 'detail-description';
-        const paragraphs = currentProject.fullDescription.split(/\n\n+/);
-        descDiv.innerHTML = paragraphs.map(p => '<p>' + p.trim().replace(/\n/g, ' ') + '</p>').join('');
-        detailImages.appendChild(descDiv);
-    }
-
-    // Keep popup open and open detail view
-    // Don't close popup - keep it open
-    detailView.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    // Navigate to detail page with project ID
+    window.location.href = `detail.html?id=${currentProject.id}`;
 }
 
 // Close detail view
@@ -321,10 +295,6 @@ document.addEventListener('keydown', (e) => {
         } else if (e.key === 'ArrowRight') {
             nextSlide();
         }
-    } else if (detailView.classList.contains('active')) {
-        if (e.key === 'Escape') {
-            closeDetailView();
-        }
     } else if (cvView.classList.contains('active')) {
         if (e.key === 'Escape') {
             closeCvView();
@@ -348,11 +318,7 @@ popupModal.addEventListener('click', (e) => {
     }
 });
 
-detailView.addEventListener('click', (e) => {
-    if (e.target === detailView) {
-        closeDetailView();
-    }
-});
+// Detail view is now a separate page, so no click handler needed
 
 // Open CV view
 function openCvView() {
