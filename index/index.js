@@ -134,19 +134,17 @@ function openPopup(project) {
                     nextSlide();
                 }
             });
+            // Add right-click handler to advance to next image
+            img.addEventListener('contextmenu', (e) => {
+                e.preventDefault(); // Prevent default context menu
+                nextSlide();
+            });
             slideshowContainer.appendChild(img);
         });
         currentSlideIndex = 0;
         updateSlideCounter();
         updateSlideButtons();
         document.querySelector('.image-slideshow').style.display = 'block';
-        
-        // Start auto-advance timer (2 seconds)
-        if (project.images.length > 1) {
-            slideshowTimer = setInterval(() => {
-                nextSlide();
-            }, 2000);
-        }
     } else {
         slideshowContainer.innerHTML = '<p style="font-size: 14px; color: #666;">No images available</p>';
         document.querySelector('.image-slideshow').style.display = 'none';
@@ -228,11 +226,6 @@ function showSlide(index) {
     const slides = slideshowContainer.querySelectorAll('img');
     if (index < 0 || index >= slides.length) return;
     
-    // Reset timer when manually changing slides
-    if (slideshowTimer) {
-        clearInterval(slideshowTimer);
-    }
-    
     slides.forEach((slide, i) => {
         if (i === index) {
             slide.classList.remove('hidden');
@@ -248,13 +241,6 @@ function showSlide(index) {
     currentSlideIndex = index;
     updateSlideCounter();
     updateSlideButtons();
-    
-    // Restart timer
-    if (currentProject.images.length > 1) {
-        slideshowTimer = setInterval(() => {
-            nextSlide();
-        }, 2000);
-    }
 }
 
 function nextSlide() {
