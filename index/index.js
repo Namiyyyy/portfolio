@@ -7,8 +7,10 @@ const portfolioData = {
             title: "01 - Architectures Of Sky",
             year: "2024",
             category: "photography",
+            // ========== PROJECT DESCRIPTION START ==========
             shortDescription: "a photography series aiming to create an index for objects furnishing sky",
             fullDescription: "A photography project focuses on the industrial elements, searching for micro fragments within their imposing presence, details that, when isolated, reveal an unexpected aesthetic resonance. In their intersections and overlaps, a visual language emerges, reminiscre formal compositions, the project attempts to undo the numb efficiency imposed on their aesthetics. In doing so, it reclaims a sense of affect and engagement within an industrial language built for optimization rather than expression.",
+            // ========== PROJECT DESCRIPTION END ==========
             images: [
                 "img/architecture_of_sky/architecture_of_sky.jpg",
                 "img/architecture_of_sky/architectures_of_sky_2.jpg",
@@ -21,8 +23,10 @@ const portfolioData = {
             title: "02 - Abandoned Battle Ground",
             year: "2023",
             category: "photography",
+            // ========== PROJECT DESCRIPTION START ==========
             shortDescription: "a photographical research on rubbish, and urban exclusion",
             fullDescription: "The foundation of my project lies in the photographs I capture during walks in gentrified areas or areas in the danger of being gentrified such as Wedding, Moabit, Pankow, Neukölln, and Kreuzberg.\n\nBerlin is renowned for its positive qualities as well as its reputation for being dirty. Rather than merely perceiving this as a failure of the city, the concept of \"rubbish\" and its correspondent in state agenda, waste management, emerges as a form of urban exclusion. To highlight this exclusion, I adopt an archaeological approach to rubbish within the urban periphery. I focus on groups of objects that are out-of-use, discarded, and abandoned in the city.",
+            // ========== PROJECT DESCRIPTION END ==========
             images: [
                 "img/abandoned_battleground/abandoned_battle_ground_1.jpg",
                 "img/abandoned_battleground/abandoned_battle_ground_2.jpg",
@@ -34,8 +38,10 @@ const portfolioData = {
             title: "03 - hieroglyphs",
             year: "2022",
             category: "drawing",
+            // ========== PROJECT DESCRIPTION START ==========
             shortDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
             fullDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
+            // ========== PROJECT DESCRIPTION END ==========
             images: [
                 "img/hiyeroglifler/daire çalışma.jpg",
                 "img/hiyeroglifler/üçgen çalışması.jpg"
@@ -46,8 +52,10 @@ const portfolioData = {
             title: "04 -Bodrum Merz-Bau",
             year: "2020",
             category: "INSTALLATION",
+            // ========== PROJECT DESCRIPTION START ==========
             shortDescription: "a proposal on transforming architectural objects of capitalist dystopia",
             fullDescription: "Content coming soon...",
+            // ========== PROJECT DESCRIPTION END ==========
             images: []
         }
     ]
@@ -85,6 +93,18 @@ const cvPageLink = document.getElementById('cv-page-link');
 const cvPageView = document.getElementById('cv-page-view');
 const cvPageContent = document.getElementById('cv-page-content');
 const closeCvPageBtn = document.getElementById('close-cv-page');
+const photographyLink = document.getElementById('photography-link');
+const photographyView = document.getElementById('photography-view');
+const photographyContent = document.getElementById('photography-content');
+const closePhotographyBtn = document.getElementById('close-photography');
+const videoLink = document.getElementById('video-link');
+const videoView = document.getElementById('video-view');
+const videoContent = document.getElementById('video-content');
+const closeVideoBtn = document.getElementById('close-video');
+const sculptureLink = document.getElementById('sculpture-link');
+const sculptureView = document.getElementById('sculpture-view');
+const sculptureContent = document.getElementById('sculpture-content');
+const closeSculptureBtn = document.getElementById('close-sculpture');
 
 // Initialize portfolio index
 function initializeIndex() {
@@ -293,6 +313,18 @@ document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeCvPageView();
         }
+    } else if (photographyView.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            closePhotographyView();
+        }
+    } else if (videoView.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            closeVideoView();
+        }
+    } else if (sculptureView.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            closeSculptureView();
+        }
     }
 });
 
@@ -429,6 +461,169 @@ cvPageView.addEventListener('click', (e) => {
         closeCvPageView();
     }
 });
+
+// Open Photography view
+function openPhotographyView() {
+    const photographyProjects = portfolioData.projects.filter(p => 
+        p.category.toLowerCase() === 'photography'
+    );
+    
+    let content = '';
+    if (photographyProjects.length === 0) {
+        content = '<p>No photography projects available.</p>';
+    } else {
+        photographyProjects.forEach((project) => {
+            content += `<div style="margin-bottom: 30px; cursor: pointer;" onclick="openPopupFromCategory(${project.id})">
+                <h3 style="font-size: 24px; margin-bottom: 10px;">${project.title} (${project.year})</h3>
+                <p style="font-size: 20px; margin-bottom: 10px;">${project.shortDescription}</p>
+            </div>`;
+        });
+    }
+    
+    photographyContent.innerHTML = content;
+    photographyView.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Photography view
+function closePhotographyView() {
+    photographyView.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event listeners for Photography
+photographyLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPhotographyView();
+});
+
+closePhotographyBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closePhotographyView();
+});
+
+// Close Photography when clicking outside
+photographyView.addEventListener('click', (e) => {
+    if (e.target === photographyView) {
+        closePhotographyView();
+    }
+});
+
+// Open Video view
+function openVideoView() {
+    const videoProjects = portfolioData.projects.filter(p => 
+        p.category.toLowerCase() === 'video'
+    );
+    
+    let content = '';
+    if (videoProjects.length === 0) {
+        content = '<p>No video projects available.</p>';
+    } else {
+        videoProjects.forEach((project) => {
+            content += `<div style="margin-bottom: 30px; cursor: pointer;" onclick="openPopupFromCategory(${project.id})">
+                <h3 style="font-size: 24px; margin-bottom: 10px;">${project.title} (${project.year})</h3>
+                <p style="font-size: 20px; margin-bottom: 10px;">${project.shortDescription}</p>
+            </div>`;
+        });
+    }
+    
+    videoContent.innerHTML = content;
+    videoView.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Video view
+function closeVideoView() {
+    videoView.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event listeners for Video
+videoLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    openVideoView();
+});
+
+closeVideoBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeVideoView();
+});
+
+// Close Video when clicking outside
+videoView.addEventListener('click', (e) => {
+    if (e.target === videoView) {
+        closeVideoView();
+    }
+});
+
+// Open Sculpture/Installation view
+function openSculptureView() {
+    const sculptureProjects = portfolioData.projects.filter(p => 
+        p.category.toLowerCase() === 'installation' || 
+        p.category.toLowerCase() === 'sculpture' ||
+        p.category.toLowerCase() === 'sculpture/installation'
+    );
+    
+    let content = '';
+    if (sculptureProjects.length === 0) {
+        content = '<p>No sculpture/installation projects available.</p>';
+    } else {
+        sculptureProjects.forEach((project) => {
+            content += `<div style="margin-bottom: 30px; cursor: pointer;" onclick="openPopupFromCategory(${project.id})">
+                <h3 style="font-size: 24px; margin-bottom: 10px;">${project.title} (${project.year})</h3>
+                <p style="font-size: 20px; margin-bottom: 10px;">${project.shortDescription}</p>
+            </div>`;
+        });
+    }
+    
+    sculptureContent.innerHTML = content;
+    sculptureView.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Sculpture/Installation view
+function closeSculptureView() {
+    sculptureView.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event listeners for Sculpture/Installation
+sculptureLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    openSculptureView();
+});
+
+closeSculptureBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeSculptureView();
+});
+
+// Close Sculpture/Installation when clicking outside
+sculptureView.addEventListener('click', (e) => {
+    if (e.target === sculptureView) {
+        closeSculptureView();
+    }
+});
+
+// Helper function to open popup from category view
+function openPopupFromCategory(projectId) {
+    const project = portfolioData.projects.find(p => p.id === projectId);
+    if (project) {
+        // Close the category view first
+        if (photographyView.classList.contains('active')) {
+            closePhotographyView();
+        } else if (videoView.classList.contains('active')) {
+            closeVideoView();
+        } else if (sculptureView.classList.contains('active')) {
+            closeSculptureView();
+        }
+        // Open the popup
+        openPopup(project);
+    }
+}
+
+// Make openPopupFromCategory available globally
+window.openPopupFromCategory = openPopupFromCategory;
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
