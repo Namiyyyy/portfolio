@@ -3,19 +3,46 @@ const portfolioData = {
     title: "Gülsen Namıduru",
     projects: [
         {
-            id: 1,
-            title: "01 - Architectures Of Sky",
+            id: 5,
+            title: "05 - Sylwester Stalker",
             year: "2024",
-            category: "photography",
+            category: "video",
+            medium: "video",
             // ========== PROJECT DESCRIPTION START ==========
-            shortDescription: "a photography series aiming to create an index for objects furnishing sky",
-            fullDescription: "A photography project focuses on the industrial elements, searching for micro fragments within their imposing presence, details that, when isolated, reveal an unexpected aesthetic resonance. In their intersections and overlaps, a visual language emerges, reminiscre formal compositions, the project attempts to undo the numb efficiency imposed on their aesthetics. In doing so, it reclaims a sense of affect and engagement within an industrial language built for optimization rather than expression.",
+            shortDescription: "Content coming soon...",
+            fullDescription: "Content coming soon...",
+            // ========== PROJECT DESCRIPTION END ==========
+            images: [],
+            videos: [
+                // Add your video file path here, e.g.:
+                // "videos/sylwester_stalker.mp4"
+            ]
+        },
+        {
+            id: 4,
+            title: "04 -Bodrum Merz-Bau",
+            year: "2020",
+            category: "INSTALLATION",
+            medium: "installation",
+            // ========== PROJECT DESCRIPTION START ==========
+            shortDescription: "a proposal on transforming architectural objects of capitalist dystopia",
+            fullDescription: "Content coming soon...",
+            // ========== PROJECT DESCRIPTION END ==========
+            images: []
+        },
+        {
+            id: 3,
+            title: "03 - hieroglyphs",
+            year: "2022",
+            category: "drawing",
+            medium: "drawing",
+            // ========== PROJECT DESCRIPTION START ==========
+            shortDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
+            fullDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
             // ========== PROJECT DESCRIPTION END ==========
             images: [
-                "img/architecture_of_sky/architecture_of_sky.jpg",
-                "img/architecture_of_sky/architectures_of_sky_2.jpg",
-                "img/architecture_of_sky/architectures_of_sky_3.jpg",
-                "img/architecture_of_sky/_DSC5409.jpg"
+                "img/hiyeroglifler/daire çalışma.jpg",
+                "img/hiyeroglifler/üçgen çalışması.jpg"
             ]
         },
         {
@@ -23,6 +50,7 @@ const portfolioData = {
             title: "02 - Abandoned Battle Ground",
             year: "2023",
             category: "photography",
+            medium: "photography",
             // ========== PROJECT DESCRIPTION START ==========
             shortDescription: "a photographical research on rubbish, and urban exclusion",
             fullDescription: "The foundation of my project lies in the photographs I capture during walks in gentrified areas or areas in the danger of being gentrified such as Wedding, Moabit, Pankow, Neukölln, and Kreuzberg.\n\nBerlin is renowned for its positive qualities as well as its reputation for being dirty. Rather than merely perceiving this as a failure of the city, the concept of \"rubbish\" and its correspondent in state agenda, waste management, emerges as a form of urban exclusion. To highlight this exclusion, I adopt an archaeological approach to rubbish within the urban periphery. I focus on groups of objects that are out-of-use, discarded, and abandoned in the city.",
@@ -34,29 +62,21 @@ const portfolioData = {
             ]
         },
         {
-            id: 3,
-            title: "03 - hieroglyphs",
-            year: "2022",
-            category: "drawing",
+            id: 1,
+            title: "01 - Architectures Of Sky",
+            year: "2024",
+            category: "photography",
+            medium: "photography",
             // ========== PROJECT DESCRIPTION START ==========
-            shortDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
-            fullDescription: "an attempt to reclaim geometry and it's language, to create an affective symbolism out of them",
+            shortDescription: "a photography series aiming to create an index for objects furnishing sky",
+            fullDescription: "A photography project focuses on the industrial elements, searching for micro fragments within their imposing presence, details that, when isolated, reveal an unexpected aesthetic resonance. In their intersections and overlaps, a visual language emerges, reminiscre formal compositions, the project attempts to undo the numb efficiency imposed on their aesthetics. In doing so, it reclaims a sense of affect and engagement within an industrial language built for optimization rather than expression.",
             // ========== PROJECT DESCRIPTION END ==========
             images: [
-                "img/hiyeroglifler/daire çalışma.jpg",
-                "img/hiyeroglifler/üçgen çalışması.jpg"
+                "img/architecture_of_sky/architecture_of_sky.jpg",
+                "img/architecture_of_sky/architectures_of_sky_2.jpg",
+                "img/architecture_of_sky/architectures_of_sky_3.jpg",
+                "img/architecture_of_sky/_DSC5409.jpg"
             ]
-        },
-        {
-            id: 4,
-            title: "04 -Bodrum Merz-Bau",
-            year: "2020",
-            category: "INSTALLATION",
-            // ========== PROJECT DESCRIPTION START ==========
-            shortDescription: "a proposal on transforming architectural objects of capitalist dystopia",
-            fullDescription: "Content coming soon...",
-            // ========== PROJECT DESCRIPTION END ==========
-            images: []
         }
     ]
 };
@@ -71,6 +91,7 @@ const portfolioIndex = document.getElementById('portfolio-index');
 const popupModal = document.getElementById('popup-modal');
 const detailView = document.getElementById('detail-view');
 const popupTitle = document.getElementById('popup-title');
+const popupMedium = document.getElementById('popup-medium');
 const popupShortDescription = document.getElementById('popup-short-description');
 const slideshowContainer = document.getElementById('slideshow-container');
 const slideCounter = document.getElementById('slide-counter');
@@ -111,6 +132,9 @@ function initializeIndex() {
     portfolioData.projects.forEach((project) => {
         const li = document.createElement('li');
         li.textContent = project.title;
+        li.dataset.projectId = project.id;
+        li.dataset.category = project.category.toLowerCase();
+        li.dataset.medium = project.medium ? project.medium.toLowerCase() : '';
         li.addEventListener('click', () => openPopup(project));
         portfolioIndex.appendChild(li);
     });
@@ -123,10 +147,29 @@ function openPopup(project) {
 
     // Set popup content
     popupTitle.textContent = `${project.title} (${project.year})`;
+    if (project.medium) {
+        popupMedium.textContent = project.medium;
+        popupMedium.style.display = 'inline';
+    } else {
+        popupMedium.style.display = 'none';
+    }
     popupShortDescription.textContent = project.shortDescription;
 
-    // Handle images
+    // Combine images and videos into a media array
+    const mediaItems = [];
     if (project.images && project.images.length > 0) {
+        project.images.forEach(imgPath => {
+            mediaItems.push({ type: 'image', src: imgPath });
+        });
+    }
+    if (project.videos && project.videos.length > 0) {
+        project.videos.forEach(videoPath => {
+            mediaItems.push({ type: 'video', src: videoPath });
+        });
+    }
+
+    // Handle media (images and videos)
+    if (mediaItems.length > 0) {
         // Clear any existing timer
         if (slideshowTimer) {
             clearInterval(slideshowTimer);
@@ -134,39 +177,54 @@ function openPopup(project) {
         }
         
         slideshowContainer.innerHTML = '';
-        project.images.forEach((imgPath, index) => {
-            const img = document.createElement('img');
-            img.src = imgPath;
-            img.alt = project.title;
-            img.classList.add('slide-image');
-            if (index === 0) {
-                // First image is visible and sets container height
-                img.style.position = 'relative';
+        mediaItems.forEach((mediaItem, index) => {
+            let element;
+            if (mediaItem.type === 'video') {
+                element = document.createElement('video');
+                element.src = mediaItem.src;
+                element.controls = true;
+                element.classList.add('slide-video');
             } else {
-                img.classList.add('hidden');
+                element = document.createElement('img');
+                element.src = mediaItem.src;
+                element.alt = project.title;
+                element.classList.add('slide-image');
             }
-            // Add click handler to change image
-            img.addEventListener('click', () => {
+            
+            element.classList.add('slide-media');
+            if (index === 0) {
+                // First media is visible and sets container height
+                element.style.position = 'relative';
+            } else {
+                element.classList.add('hidden');
+            }
+            
+            // Add click handler to change slide
+            element.addEventListener('click', () => {
                 if (index !== currentSlideIndex) {
                     showSlide(index);
                 } else {
-                    // If clicking current image, go to next
+                    // If clicking current media, go to next
                     nextSlide();
                 }
             });
-            // Add right-click handler to advance to next image
-            img.addEventListener('contextmenu', (e) => {
-                e.preventDefault(); // Prevent default context menu
-                nextSlide();
-            });
-            slideshowContainer.appendChild(img);
+            
+            // Add right-click handler to advance to next slide (only for images)
+            if (mediaItem.type === 'image') {
+                element.addEventListener('contextmenu', (e) => {
+                    e.preventDefault(); // Prevent default context menu
+                    nextSlide();
+                });
+            }
+            
+            slideshowContainer.appendChild(element);
         });
         currentSlideIndex = 0;
         updateSlideCounter();
         updateSlideButtons();
         document.querySelector('.image-slideshow').style.display = 'block';
     } else {
-        slideshowContainer.innerHTML = '<p style="font-size: 14px; color: #666;">No images available</p>';
+        slideshowContainer.innerHTML = '<p style="font-size: 14px; color: #666;">No media available</p>';
         document.querySelector('.image-slideshow').style.display = 'none';
     }
 
@@ -222,15 +280,36 @@ function closeDetailView() {
 
 // Slideshow navigation
 function updateSlideCounter() {
-    if (!currentProject || !currentProject.images || currentProject.images.length === 0) {
+    if (!currentProject) {
         slideCounter.textContent = '';
         return;
     }
-    slideCounter.textContent = `${currentSlideIndex + 1} / ${currentProject.images.length}`;
+    
+    // Count total media items (images + videos)
+    const imageCount = currentProject.images ? currentProject.images.length : 0;
+    const videoCount = currentProject.videos ? currentProject.videos.length : 0;
+    const totalMedia = imageCount + videoCount;
+    
+    if (totalMedia === 0) {
+        slideCounter.textContent = '';
+        return;
+    }
+    slideCounter.textContent = `${currentSlideIndex + 1} / ${totalMedia}`;
 }
 
 function updateSlideButtons() {
-    if (!currentProject || !currentProject.images || currentProject.images.length === 0) {
+    if (!currentProject) {
+        prevSlideBtn.disabled = true;
+        nextSlideBtn.disabled = true;
+        return;
+    }
+    
+    // Count total media items (images + videos)
+    const imageCount = currentProject.images ? currentProject.images.length : 0;
+    const videoCount = currentProject.videos ? currentProject.videos.length : 0;
+    const totalMedia = imageCount + videoCount;
+    
+    if (totalMedia === 0) {
         prevSlideBtn.disabled = true;
         nextSlideBtn.disabled = true;
         return;
@@ -241,10 +320,24 @@ function updateSlideButtons() {
 }
 
 function showSlide(index) {
-    if (!currentProject || !currentProject.images || currentProject.images.length === 0) return;
+    if (!currentProject) return;
     
-    const slides = slideshowContainer.querySelectorAll('img');
+    // Count total media items
+    const imageCount = currentProject.images ? currentProject.images.length : 0;
+    const videoCount = currentProject.videos ? currentProject.videos.length : 0;
+    const totalMedia = imageCount + videoCount;
+    
+    if (totalMedia === 0) return;
+    
+    const slides = slideshowContainer.querySelectorAll('.slide-media');
     if (index < 0 || index >= slides.length) return;
+    
+    // Pause any playing videos before switching
+    slides.forEach((slide) => {
+        if (slide.tagName === 'VIDEO') {
+            slide.pause();
+        }
+    });
     
     slides.forEach((slide, i) => {
         if (i === index) {
@@ -264,14 +357,28 @@ function showSlide(index) {
 }
 
 function nextSlide() {
-    if (!currentProject || !currentProject.images || currentProject.images.length === 0) return;
-    const nextIndex = (currentSlideIndex + 1) % currentProject.images.length;
+    if (!currentProject) return;
+    
+    // Count total media items
+    const imageCount = currentProject.images ? currentProject.images.length : 0;
+    const videoCount = currentProject.videos ? currentProject.videos.length : 0;
+    const totalMedia = imageCount + videoCount;
+    
+    if (totalMedia === 0) return;
+    const nextIndex = (currentSlideIndex + 1) % totalMedia;
     showSlide(nextIndex);
 }
 
 function prevSlide() {
-    if (!currentProject || !currentProject.images || currentProject.images.length === 0) return;
-    const prevIndex = (currentSlideIndex - 1 + currentProject.images.length) % currentProject.images.length;
+    if (!currentProject) return;
+    
+    // Count total media items
+    const imageCount = currentProject.images ? currentProject.images.length : 0;
+    const videoCount = currentProject.videos ? currentProject.videos.length : 0;
+    const totalMedia = imageCount + videoCount;
+    
+    if (totalMedia === 0) return;
+    const prevIndex = (currentSlideIndex - 1 + totalMedia) % totalMedia;
     showSlide(prevIndex);
 }
 
@@ -491,10 +598,38 @@ function closePhotographyView() {
     document.body.style.overflow = 'auto';
 }
 
+// Category highlight state
+let photographyHighlighted = false;
+let videoHighlighted = false;
+let sculptureHighlighted = false;
+
 // Event listeners for Photography
 photographyLink.addEventListener('click', (e) => {
     e.preventDefault();
-    openPhotographyView();
+    
+    // Toggle highlight state
+    photographyHighlighted = !photographyHighlighted;
+    
+    // Get all list items
+    const listItems = portfolioIndex.querySelectorAll('li');
+    
+    listItems.forEach((li) => {
+        const medium = li.dataset.medium;
+        if (medium === 'photography') {
+            if (photographyHighlighted) {
+                li.style.color = 'red';
+            } else {
+                li.style.color = ''; // Reset to default
+            }
+        } else {
+            // Reset other items to default
+            li.style.color = '';
+        }
+    });
+    
+    // Reset other category highlights
+    videoHighlighted = false;
+    sculptureHighlighted = false;
 });
 
 closePhotographyBtn.addEventListener('click', (e) => {
@@ -541,7 +676,30 @@ function closeVideoView() {
 // Event listeners for Video
 videoLink.addEventListener('click', (e) => {
     e.preventDefault();
-    openVideoView();
+    
+    // Toggle highlight state
+    videoHighlighted = !videoHighlighted;
+    
+    // Get all list items
+    const listItems = portfolioIndex.querySelectorAll('li');
+    
+    listItems.forEach((li) => {
+        const medium = li.dataset.medium;
+        if (medium === 'video') {
+            if (videoHighlighted) {
+                li.style.color = 'red';
+            } else {
+                li.style.color = ''; // Reset to default
+            }
+        } else {
+            // Reset other items to default
+            li.style.color = '';
+        }
+    });
+    
+    // Reset other category highlights
+    photographyHighlighted = false;
+    sculptureHighlighted = false;
 });
 
 closeVideoBtn.addEventListener('click', (e) => {
@@ -590,7 +748,30 @@ function closeSculptureView() {
 // Event listeners for Sculpture/Installation
 sculptureLink.addEventListener('click', (e) => {
     e.preventDefault();
-    openSculptureView();
+    
+    // Toggle highlight state
+    sculptureHighlighted = !sculptureHighlighted;
+    
+    // Get all list items
+    const listItems = portfolioIndex.querySelectorAll('li');
+    
+    listItems.forEach((li) => {
+        const medium = li.dataset.medium;
+        if (medium === 'installation') {
+            if (sculptureHighlighted) {
+                li.style.color = 'red';
+            } else {
+                li.style.color = ''; // Reset to default
+            }
+        } else {
+            // Reset other items to default
+            li.style.color = '';
+        }
+    });
+    
+    // Reset other category highlights
+    photographyHighlighted = false;
+    videoHighlighted = false;
 });
 
 closeSculptureBtn.addEventListener('click', (e) => {

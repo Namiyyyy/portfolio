@@ -66,7 +66,7 @@ header h1 span {
 }
 
 .cv-link:first-of-type {
-    margin-bottom: 0;
+    margin-bottom: 8px;
 }
 
 .cv-link:last-of-type {
@@ -181,12 +181,22 @@ main {
 
 .popup-header {
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .popup-header h2 {
-    font-size: 28px;
+    font-size: 11px;
     font-weight: normal;
     color: black;
+}
+
+.medium-tag {
+    font-size: 11px;
+    color: #666;
+    text-transform: lowercase;
+    font-style: italic;
 }
 
 .popup-actions {
@@ -199,7 +209,7 @@ main {
 .action-link {
     color: black;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 11px;
     white-space: nowrap;
 }
 
@@ -217,17 +227,22 @@ main {
     width: 100%;
     margin-bottom: 15px;
     overflow: hidden;
+    max-height: 66.66vh;
 }
 
-.slideshow-container img {
+.slideshow-container img,
+.slideshow-container video {
     width: 100%;
     height: auto;
+    max-height: 66.66vh;
+    object-fit: contain;
     display: block;
     cursor: ew-resize;
     transition: opacity 0.25s ease-in-out;
 }
 
-.slideshow-container img.slide-image {
+.slideshow-container img.slide-image,
+.slideshow-container video.slide-video {
     position: absolute;
     top: 0;
     left: 0;
@@ -236,15 +251,21 @@ main {
     z-index: 1;
 }
 
-.slideshow-container img.slide-image.hidden {
+.slideshow-container img.slide-image.hidden,
+.slideshow-container video.slide-video.hidden {
     opacity: 0;
     pointer-events: none;
     z-index: 0;
 }
 
-.slideshow-container img.slide-image:first-child {
+.slideshow-container img.slide-image:first-child,
+.slideshow-container video.slide-video:first-child {
     position: relative;
     z-index: 2;
+}
+
+.slideshow-container video {
+    background: #000;
 }
 
 .slideshow-controls {
@@ -278,24 +299,40 @@ main {
 }
 
 .popup-description {
-    font-size: 20px;
+    font-size: 11px;
     line-height: 1.8;
 }
 
 .popup-description p {
     margin-bottom: 10px;
+    font-size: 11px;
 }
 
 /* Detail View */
+/* Detail View - Full page with frame */
+body.detail-page {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+body.detail-page .container {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
 .detail-page-content {
-    width: 50%;
-    min-width: 400px;
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 40px;
+    width: calc(100% - 1cm);
+    height: calc(100% - 1cm);
+    min-height: calc(100vh - 1cm);
+    margin: 0.5cm;
+    padding: 0;
     border: 1px solid #000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     background: white;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .detail-modal.active {
@@ -324,37 +361,54 @@ main {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 30px;
+    padding: 40px;
+    padding-bottom: 0;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-.detail-header h2 {
-    font-size: 36px;
-    font-weight: normal;
+.detail-header > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     flex: 1;
     min-width: 200px;
+}
+
+.detail-header h2 {
+    font-size: 11px;
+    font-weight: normal;
     color: red;
 }
 
 .detail-images {
     margin-bottom: 30px;
+    padding: 0 40px 40px 40px;
 }
 
-.detail-images img {
+.detail-images img,
+.detail-images video {
     width: 100%;
     height: auto;
+    max-height: 66.66vh;
+    object-fit: contain;
     display: block;
     margin-bottom: 20px;
 }
 
+.detail-images video {
+    background: #000;
+}
+
 .detail-description {
-    font-size: 24px;
+    font-size: 11px;
     line-height: 1.8;
     margin-bottom: 30px;
 }
 
 .detail-description p {
     margin-bottom: 20px;
+    font-size: 11px;
 }
 
 /* CV Content */

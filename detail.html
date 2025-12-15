@@ -6,11 +6,14 @@
     <title>Detail - Gülsen Namıduru</title>
     <link rel="stylesheet" href="index/index.css">
 </head>
-<body>
+<body class="detail-page">
     <div class="container">
         <div class="detail-page-content">
             <div class="detail-header">
-                <h2 id="detail-title"></h2>
+                <div>
+                    <h2 id="detail-title"></h2>
+                    <span id="detail-medium" class="medium-tag"></span>
+                </div>
                 <a href="index.html" class="action-link">close</a>
             </div>
 
@@ -31,20 +34,51 @@
         
         if (project) {
             const detailTitle = document.getElementById('detail-title');
+            const detailMedium = document.getElementById('detail-medium');
             const detailImages = document.getElementById('detail-images');
             
             detailTitle.textContent = `${project.title} (${project.year})`;
+            if (project.medium) {
+                detailMedium.textContent = project.medium;
+                detailMedium.style.display = 'inline';
+            } else {
+                detailMedium.style.display = 'none';
+            }
             
-            // Add images to detail view with description after first image
-            detailImages.innerHTML = '';
+            // Combine images and videos into a media array
+            const mediaItems = [];
             if (project.images && project.images.length > 0) {
-                project.images.forEach((imgPath, index) => {
-                    const img = document.createElement('img');
-                    img.src = imgPath;
-                    img.alt = project.title;
-                    detailImages.appendChild(img);
+                project.images.forEach(imgPath => {
+                    mediaItems.push({ type: 'image', src: imgPath });
+                });
+            }
+            if (project.videos && project.videos.length > 0) {
+                project.videos.forEach(videoPath => {
+                    mediaItems.push({ type: 'video', src: videoPath });
+                });
+            }
+            
+            // Add media to detail view with description after first item
+            detailImages.innerHTML = '';
+            if (mediaItems.length > 0) {
+                mediaItems.forEach((mediaItem, index) => {
+                    let element;
+                    if (mediaItem.type === 'video') {
+                        element = document.createElement('video');
+                        element.src = mediaItem.src;
+                        element.controls = true;
+                        element.style.width = '100%';
+                        element.style.height = 'auto';
+                        element.style.display = 'block';
+                        element.style.marginBottom = '20px';
+                    } else {
+                        element = document.createElement('img');
+                        element.src = mediaItem.src;
+                        element.alt = project.title;
+                    }
+                    detailImages.appendChild(element);
                     
-                    // Insert description after first image
+                    // Insert description after first media item
                     if (index === 0) {
                         const descDiv = document.createElement('div');
                         descDiv.className = 'detail-description';
@@ -55,8 +89,8 @@
                     }
                 });
             } else {
-                detailImages.innerHTML = '<p style="font-size: 14px; color: #666;">No images available</p>';
-                // Still show description if no images
+                detailImages.innerHTML = '<p style="font-size: 14px; color: #666;">No media available</p>';
+                // Still show description if no media
                 const descDiv = document.createElement('div');
                 descDiv.className = 'detail-description';
                 const paragraphs = project.fullDescription.split(/\n\n+/);
