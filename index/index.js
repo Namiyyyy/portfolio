@@ -19,18 +19,6 @@ const portfolioData = {
             ]
         },
         {
-            id: 4,
-            title: "04 -Bodrum Merz-Bau",
-            year: "2020",
-            category: "INSTALLATION",
-            medium: "installation",
-            // ========== PROJECT DESCRIPTION START ==========
-            shortDescription: "a proposal on transforming architectural objects of capitalist dystopia",
-            fullDescription: "Content coming soon...",
-            // ========== PROJECT DESCRIPTION END ==========
-            images: []
-        },
-        {
             id: 3,
             title: "03 - hieroglyphs",
             year: "2022",

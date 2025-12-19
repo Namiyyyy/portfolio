@@ -52,7 +52,7 @@ header h1 span {
 }
 
 .cv-link {
-    font-size: clamp(14px, 3.5vw, 53px);
+    font-size: clamp(10px, 2.3vw, 35px);
     font-weight: normal;
     padding: 0 20px 4px 20px;
     margin-bottom: 40px;
@@ -187,13 +187,13 @@ main {
 }
 
 .popup-header h2 {
-    font-size: 11px;
+    font-size: 8px;
     font-weight: normal;
     color: black;
 }
 
 .medium-tag {
-    font-size: 11px;
+    font-size: 8px;
     color: #666;
     text-transform: lowercase;
     font-style: italic;
@@ -209,7 +209,7 @@ main {
 .action-link {
     color: black;
     text-decoration: none;
-    font-size: 11px;
+    font-size: 8px;
     white-space: nowrap;
 }
 
@@ -295,17 +295,17 @@ main {
 }
 
 .slide-counter {
-    font-size: 16px;
+    font-size: 11px;
 }
 
 .popup-description {
-    font-size: 11px;
+    font-size: 8px;
     line-height: 1.8;
 }
 
 .popup-description p {
     margin-bottom: 10px;
-    font-size: 11px;
+    font-size: 8px;
 }
 
 /* Detail View */
@@ -376,7 +376,7 @@ body.detail-page .container {
 }
 
 .detail-header h2 {
-    font-size: 11px;
+    font-size: 8px;
     font-weight: normal;
     color: red;
 }
@@ -401,37 +401,37 @@ body.detail-page .container {
 }
 
 .detail-description {
-    font-size: 11px;
+    font-size: 8px;
     line-height: 1.8;
     margin-bottom: 30px;
 }
 
 .detail-description p {
     margin-bottom: 20px;
-    font-size: 11px;
+    font-size: 8px;
 }
 
 /* CV Content */
 .cv-content {
-    font-size: 24px;
+    font-size: 16px;
     line-height: 1.8;
 }
 
 .cv-content p {
-    font-size: 24px;
+    font-size: 16px;
     margin-bottom: 20px;
 }
 
 .cv-content a {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .cv-content strong {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .cv-content h3 {
-    font-size: 28px;
+    font-size: 18px;
     font-weight: normal;
     margin-top: 30px;
     margin-bottom: 15px;
